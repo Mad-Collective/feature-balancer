@@ -105,10 +105,11 @@ class CodeCoverage extends Command
     private function getFilter()
     {
         $filter = new PHP_CodeCoverage_Filter();
-        $filter->addDirectoryToWhitelist($this->getPath('src'));
-        $filter->addDirectoryToBlacklist($this->getPath('bin'));
-        $filter->addDirectoryToBlacklist($this->getPath('spec'));
-        $filter->addDirectoryToBlacklist($this->getPath('vendor'));
+
+        $filter->addDirectoryToWhitelist(realpath($this->baseDir.'../src'));
+        $filter->addDirectoryToBlacklist(realpath($this->baseDir.'../bin'));
+        $filter->addDirectoryToBlacklist(realpath($this->baseDir.'../spec'));
+        $filter->addDirectoryToBlacklist(realpath($this->baseDir.'../vendor'));
 
         return $filter;
     }
