@@ -19,6 +19,7 @@ class BalancerBuilderSpec extends ObjectBehavior
     {
         $this->withLogger($logger)->shouldReturnAnInstanceOf(BalancerBuilder::class);
         $this->withMonitor($monitor, "foo")->shouldReturnAnInstanceOf(BalancerBuilder::class);
+        $this->withoutExceptions()->shouldReturnAnInstanceOf(BalancerBuilder::class);
         $this->create([
             "feature_1" => ["foo" => 50, "off" => 50],
             "feature_2" => ["bar" => 20, "rab" => 40, "arb" => 40]

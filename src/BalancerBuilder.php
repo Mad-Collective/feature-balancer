@@ -3,6 +3,7 @@
 namespace Cmp\FeatureBalancer;
 
 use Cmp\FeatureBalancer\Config\Identifier;
+use Cmp\FeatureBalancer\Decorator\ExceptionSilencerDecorator;
 use Cmp\FeatureBalancer\Decorator\LoggerDecorator;
 use Cmp\FeatureBalancer\Decorator\MonitoringDecorator;
 use Cmp\Monitoring\Monitor;
@@ -32,6 +33,11 @@ class BalancerBuilder
     private $logLevel;
 
     /**
+     * @var bool
+     */
+    private $exceptions = true;
+
+    /**
      * @param array $config
      *
      * @return Balancer|LoggerDecorator|MonitoringDecorator
@@ -47,6 +53,10 @@ class BalancerBuilder
 
         if ($this->logger instanceof LoggerInterface) {
             $balancer = new LoggerDecorator($balancer, $this->logger, $this->logLevel);
+        }
+
+        if (!$this->exceptions) {
+            $balancer = new ExceptionSilencerDecorator($balancer, $this->logger);
         }
 
         return $balancer;
@@ -76,6 +86,16 @@ class BalancerBuilder
     {
         $this->logger   = $logger;
         $this->logLevel = $logLevel;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function withoutExceptions()
+    {
+        $this->exceptions = false;
 
         return $this;
     }
