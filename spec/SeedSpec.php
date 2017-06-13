@@ -31,21 +31,25 @@ class SeedSpec extends ObjectBehavior
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', [new \stdClass(), []]);
     }
 
-    function it_can_determine_seed_from_strings()
+    /**
+     * @dataProvider seedConversionExamples
+     */
+    function it_can_determine_the_seed($inputValue, $expectedValue)
     {
-        $this->beConstructedWith("foo");
-        $this->seed()->shouldReturn(24);
+        $this->beConstructedWith($inputValue);
+        $this->seed()->shouldReturn($expectedValue);
     }
 
-    function it_can_determine_seed_from_numbers()
+    public function seedConversionExamples()
     {
-        $this->beConstructedWith(10055);
-        $this->seed()->shouldReturn(55);
-    }
-
-    function it_can_determine_seed_from_negative_numbers()
-    {
-        $this->beConstructedWith(-10055);
-        $this->seed()->shouldReturn(55);
+        return [
+            ["1234à", 84],
+            ["1234è", 88],
+            ["foo", 26],
+            [10055, 55],
+            [-10055, 55],
+            [1.1, 84],
+            [1.2, 26],
+        ];
     }
 }

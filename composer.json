@@ -16,7 +16,8 @@
     "require-dev": {
         "phpspec/phpspec": "^2.0",
         "phpunit/php-code-coverage": "^2.2",
-        "pluggit/monitoring": "^2.0"
+        "pluggit/monitoring": "^2.0",
+        "coduo/phpspec-data-provider-extension": "^1.0"
     },
     "config": {
         "bin-dir": "bin"

@@ -38,10 +38,11 @@ class Seed
      *
      * @return int
      */
-    private function fromString($seed)
+    private function fromScalar($seed)
     {
         $total = 0;
-        foreach (str_split($seed) as $char) {
+        $hash  = md5((string) $seed);
+        foreach (str_split($hash) as $char) {
             $total += ord($char);
         }
 
@@ -55,7 +56,7 @@ class Seed
      */
     private function fromNumber($seed)
     {
-        return abs((int) $seed) % 100;
+        return abs($seed) % 100;
     }
 
     /**
@@ -65,14 +66,14 @@ class Seed
      */
     private function calculateSeed($seed)
     {
-        if (is_numeric($seed)) {
+        if (is_int($seed)) {
             return $this->fromNumber($seed);
         }
 
-        if (is_string($seed)) {
-            return $this->fromString($seed);
+        if (is_scalar($seed) && !is_bool($seed)) {
+            return $this->fromScalar($seed);
         }
 
-        throw new InvalidArgumentException("The seed has to be either a string or and integer");
+        throw new InvalidArgumentException("The seed has to be either a string or a number");
     }
 }
