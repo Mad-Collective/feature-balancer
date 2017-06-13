@@ -31,7 +31,8 @@ class CodeCoverage extends Command
         $this->baseDir = realpath(__DIR__.'/..').'/';
 
         $this->setName('code-coverage:run')
-            ->setDescription('Runs the code coverage');
+            ->setDescription('Runs the code coverage')
+            ->addArgument("format", InputArgument::REQUIRED, "The output for the code report: clover or html");
     }
 
     /**
@@ -44,13 +45,20 @@ class CodeCoverage extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (!in_array($input->getArgument('format'), ['clover', 'html'])) {
+            throw new InvalidArgumentException("The only valid formats are clover or html");
+        }
+
         $coverage = new PHP_CodeCoverage(null, $this->getFilter());
         $coverage->start('<tests>');
-
         $this->runPhpSpec();
-
         $coverage->stop();
-        $this->writeReport($coverage);
+
+        if ($input->getArgument('format') == 'clover') {
+            $this->writeCloverReport($coverage);
+        } elseif ($input->getArgument('format') == 'html') {
+            $this->writeHtmlReport($coverage);
+        }
 
         return $this->exitCode;
     }
@@ -60,10 +68,21 @@ class CodeCoverage extends Command
      *
      * @param PHP_CodeCoverage $coverage
      */
-    private function writeReport(PHP_CodeCoverage $coverage)
+    private function writeCloverReport(PHP_CodeCoverage $coverage)
     {
         $writer = new PHP_CodeCoverage_Report_Clover();
         $writer->process($coverage, $this->getPath('clover.xml'));
+    }
+
+    /**
+     * Writes the html report
+     *
+     * @param PHP_CodeCoverage $coverage
+     */
+    private function writeHtmlReport(PHP_CodeCoverage $coverage)
+    {
+        $writer = new \PHP_CodeCoverage_Report_HTML();
+        $writer->process($coverage, $this->getPath('code-coverage'));
     }
 
     /**
@@ -85,7 +104,8 @@ class CodeCoverage extends Command
     {
         $filter = new PHP_CodeCoverage_Filter();
         $filter->addDirectoryToWhitelist($this->getPath('src'));
-        $filter->addDirectoryToBlacklist($this->getPath('test'));
+        $filter->addDirectoryToBlacklist($this->getPath('bin'));
+        $filter->addDirectoryToBlacklist($this->getPath('spec'));
         $filter->addDirectoryToBlacklist($this->getPath('vendor'));
 
         return $filter;

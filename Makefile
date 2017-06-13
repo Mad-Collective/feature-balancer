@@ -3,6 +3,7 @@ CONTAINER := phpfarm
 IMAGES ?= false
 PHP_VERSION ?: false
 APP_ROOT := /app/feature-balancer
+CODE_COVERAGE_FORMAT ?= clover
 
 all: dev logs
 
@@ -35,7 +36,7 @@ unit:
 code-coverage:
 	make dev
 	make deps
-	@docker exec -t ${COMPONENT}_${CONTAINER}_1 php-7.1 ${APP_ROOT}/bin/app code-coverage:run html
+	@docker exec -t ${COMPONENT}_${CONTAINER}_1 php-7.0 ${APP_ROOT}/bin/app code-coverage:run ${CODE_COVERAGE_FORMAT}
 
 ps: status
 status:
