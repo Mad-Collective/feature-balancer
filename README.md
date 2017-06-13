@@ -32,9 +32,10 @@ $path = $balancer->get("home_banner");
  * Deterministic balance, given a configuration and a valid seed, 
  * you'll always get the same result
  *
- * Valid seeds are non-empty strings and unsigned integers
+ * Valid seeds are non-empty strings and unsigned numbers
  */
 $path = $balancer->get("after_update_email", 78549612);
+$path = $balancer->get("after_update_email", -4.75);
 $path = $balancer->get("after_update_email", "my_user@example.com");
 ```
 
@@ -140,12 +141,12 @@ $path = $balancer->get("home_banner");
 ### Seed based deterministic retrieval
 If you pass a seed, the path will be decided using a simple yet infallible algorithm so that for *every given configuration and seed, it will always choose the same path*
 
-**NOTE** This means that the path can change if either the configuration orthe seed changes
+**NOTE** This means that the path can change if either the configuration or the seed changes
 
-You can pass both signed integers or non-empty strings as seed
+You can pass both signed numbers (integers and doubles) or non-empty strings as seed
 
 ```php
 $path = $balancer->get("after_update_email", 78549612);
-$path = $balancer->get("after_update_email", -23);
+$path = $balancer->get("after_update_email", -23.54);
 $path = $balancer->get("after_update_email", "my_user@example.com");
 ```

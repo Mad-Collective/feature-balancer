@@ -27,6 +27,7 @@ class SeedSpec extends ObjectBehavior
     {
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', ["", []]);
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', [null, []]);
+        $this->shouldThrow(InvalidArgumentException::class)->during('__construct', [true, []]);
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', [new \stdClass(), []]);
     }
 

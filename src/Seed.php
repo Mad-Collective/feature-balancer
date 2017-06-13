@@ -70,10 +70,10 @@ class Seed
             return $this->fromNumber($seed);
         }
 
-        if (is_scalar($seed)) {
+        if (is_scalar($seed) && !is_bool($seed)) {
             return $this->fromScalar($seed);
         }
 
-        throw new InvalidArgumentException("The seed has to be either a string or and integer");
+        throw new InvalidArgumentException("The seed has to be either a string or a number");
     }
 }
