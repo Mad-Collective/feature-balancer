@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "39079499bb483e2a176a443351f8243d",
-    "packages": [],
+    "content-hash": "24083c3e53d81dab53da8e91ef0c6acb",
+    "packages": [
+        {
+            "name": "psr/log",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2016-10-10T12:19:37+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
@@ -582,31 +630,36 @@
             "time": "2017-02-27T10:12:30+00:00"
         },
         {
-            "name": "psr/log",
-            "version": "1.0.2",
+            "name": "pluggit/monitoring",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+                "url": "https://github.com/CMProductions/monitoring.git",
+                "reference": "7331808fc5a8b5ab0bc2ed4275ce1c83b6889978"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "url": "https://api.github.com/repos/CMProductions/monitoring/zipball/7331808fc5a8b5ab0bc2ed4275ce1c83b6889978",
+                "reference": "7331808fc5a8b5ab0bc2ed4275ce1c83b6889978",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": "^5.5|^7.0",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "behat/behat": "^3.1",
+                "henrikbjorn/phpspec-code-coverage": "2.*",
+                "phpspec/phpspec": "^2.5",
+                "phpunit/php-code-coverage": "^2.2",
+                "phpunit/phpunit": "4.8.*",
+                "squizlabs/php_codesniffer": "2.*"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
+                    "Cmp\\Monitoring\\": "src/",
+                    "bin\\Cmp\\Monitoring\\": "bin/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -615,18 +668,12 @@
             ],
             "authors": [
                 {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "name": "jaroslawgabaracmp",
+                    "email": "jaroslaw.gabara@teamcmp.com"
                 }
             ],
-            "description": "Common interface for logging libraries",
-            "homepage": "https://github.com/php-fig/log",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "description": "Monitoring abstraction layer",
+            "time": "2017-02-14T12:04:07+00:00"
         },
         {
             "name": "sebastian/comparator",

@@ -2,8 +2,8 @@
 
 namespace spec\Cmp\FeatureBalancer;
 
+use Cmp\FeatureBalancer\Exception\OutOfBoundsException;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class BalancerSpec extends ObjectBehavior
 {
@@ -41,5 +41,10 @@ class BalancerSpec extends ObjectBehavior
     function it_can_distribute_hits_across_features_without_seed()
     {
         $this->get("foo")->shouldMatch('/abc|def/');
+    }
+
+    function it_fails_if_the_requested_feature_has_not_been_added()
+    {
+        $this->shouldThrow(OutOfBoundsException::class)->duringGet("bar");
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Cmp\FeatureBalancer;
 
+use Cmp\FeatureBalancer\Exception\InvalidArgumentException;
+
 class Seed
 {
     /**
@@ -12,12 +14,12 @@ class Seed
     /**
      * @param int|string $seed
      *
-     * @throws \InvalidArgumentException When the seed is not valid
+     * @throws InvalidArgumentException When the seed is not valid
      */
     public function __construct($seed)
     {
         if (empty($seed) && $seed !== 0) {
-            throw new \InvalidArgumentException("The seed cannot be empty");
+            throw new InvalidArgumentException("The seed cannot be empty");
         }
 
         if (is_numeric($seed)) {
@@ -25,7 +27,7 @@ class Seed
         } elseif (is_string($seed)) {
             $this->seed = $this->fromString($seed);
         } else {
-            throw new \InvalidArgumentException("The seed has to be either a string or and integer");
+            throw new InvalidArgumentException("The seed has to be either a string or and integer");
         }
     }
 

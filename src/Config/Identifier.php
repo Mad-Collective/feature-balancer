@@ -2,6 +2,8 @@
 
 namespace Cmp\FeatureBalancer\Config;
 
+use Cmp\FeatureBalancer\Exception\InvalidArgumentException;
+
 /**
  * Class Identifier
  */
@@ -20,11 +22,11 @@ class Identifier
     public function __construct($name)
     {
         if (!is_string($name)) {
-            throw new \InvalidArgumentException("The name identifier is not a valid string");
+            throw new InvalidArgumentException("The name identifier is not a valid string");
         }
 
         if (empty($name)) {
-            throw new \InvalidArgumentException("The name identifier cannot be empty");
+            throw new InvalidArgumentException("The name identifier cannot be empty");
         }
 
         $this->name = $name;

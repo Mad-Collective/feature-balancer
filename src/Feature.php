@@ -4,6 +4,7 @@ namespace Cmp\FeatureBalancer;
 
 use Cmp\FeatureBalancer\Config\Identifier;
 use Cmp\FeatureBalancer\Config\Percentage;
+use Cmp\FeatureBalancer\Exception\InvalidArgumentException;
 
 /**
  * Class Identifier
@@ -24,7 +25,7 @@ class Feature
      * @param string $name
      * @param array  $percentages
      *
-     * @throws \InvalidArgumentException When any parameter given is not acceptable 
+     * @throws InvalidArgumentException When any parameter given is not acceptable 
      */
     public function __construct($name, array $percentages)
     {
@@ -34,7 +35,7 @@ class Feature
         foreach ($percentages as $path => $percentage) {
             $path = new Identifier($path);
             if (isset($this->percentages[(string) $path])) {
-                throw new \InvalidArgumentException("The path '$path' on feature '$name' is duplicated");
+                throw new InvalidArgumentException("The path '$path' on feature '$name' is duplicated");
             }
 
             $percentage = new Percentage($percentage);
@@ -44,7 +45,7 @@ class Feature
         }
 
         if ($total !== 100) {
-            throw new \InvalidArgumentException("The total amount of paths for feature '$name' doesn't add up to 100%");
+            throw new InvalidArgumentException("The total amount of paths for feature '$name' doesn't add up to 100%");
         }
     }
 

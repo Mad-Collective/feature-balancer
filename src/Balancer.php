@@ -2,6 +2,8 @@
 
 namespace Cmp\FeatureBalancer;
 
+use Cmp\FeatureBalancer\Exception\OutOfBoundsException;
+
 class Balancer
 {
     /**
@@ -10,10 +12,7 @@ class Balancer
     private $features;
 
     /**
-     * Adds a new feature in the balancer
-     *
-     * @param string $name
-     * @param array  $percentages
+     * {@inheritdoc}
      */
     public function add($name, array $percentages)
     {
@@ -22,20 +21,12 @@ class Balancer
     }
 
     /**
-     * Gets the path tha a seedd has to follow for a given feature 
-     *
-     * @param string     $feature
-     * @param string|int $seed
-     *
-     * @return string
-     * 
-     * @throws \InvalidArgumentException When the seed is not valid
-     * @throws \OutOfBoundsException When the feature has not been configured
+     * {@inheritdoc}
      */
     public function get($feature, $seed = null)
     {
         if (!isset($this->features[$feature])) {
-            throw new \OutOfBoundsException("The feature $feature has not been configured");
+            throw new OutOfBoundsException("The feature $feature has not been configured");
         }
 
         return $this->features[$feature]->get($this->seed($seed));

@@ -2,6 +2,8 @@
 
 namespace Cmp\FeatureBalancer\Config;
 
+use Cmp\FeatureBalancer\Exception\InvalidArgumentException;
+
 /**
  * Class Percentage
  */
@@ -20,15 +22,15 @@ class Percentage
     public function __construct($number)
     {
         if (!is_int($number)) {
-            throw new \InvalidArgumentException("The percentage is not a valid integer");
+            throw new InvalidArgumentException("The percentage is not a valid integer");
         }
 
         if ($number < 0) {
-            throw new \InvalidArgumentException("The percentage cannot be less than zero");
+            throw new InvalidArgumentException("The percentage cannot be less than zero");
         }
 
         if ($number > 100) {
-            throw new \InvalidArgumentException("The percentage cannot be greater than one hundred");
+            throw new InvalidArgumentException("The percentage cannot be greater than one hundred");
         }
 
         $this->number = $number;
