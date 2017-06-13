@@ -29,10 +29,10 @@ $balancer = (new BalancerBuilder())
 $path = $balancer->get("home_banner");
 
 /**
- * Deterministic balance, given an valid seed, you'll get always the 
- * same result, unless the configuration changes
+ * Deterministic balance, given a configuration and a valid seed, 
+ * you'll always get the same result
  *
- * Valid seeds are non-empty strings and unsigned integer
+ * Valid seeds are non-empty strings and unsigned integers
  */
 $path = $balancer->get("after_update_email", 78549612);
 $path = $balancer->get("after_update_email", "my_user@example.com");
