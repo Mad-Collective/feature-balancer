@@ -72,7 +72,7 @@ class BalancerBuilder
      *
      * @return $this
      */
-    private function withLogger(LoggerInterface $logger, $logLevel = LogLevel::INFO)
+    public function withLogger(LoggerInterface $logger, $logLevel = LogLevel::INFO)
     {
         $this->logger   = $logger;
         $this->logLevel = $logLevel;

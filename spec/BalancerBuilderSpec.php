@@ -2,49 +2,26 @@
 
 namespace spec\Cmp\FeatureBalancer;
 
-use Cmp\FeatureBalancer\Exception\OutOfBoundsException;
+use Cmp\FeatureBalancer\BalancerBuilder;
+use Cmp\FeatureBalancer\BalancerInterface;
+use Cmp\Monitoring\Monitor;
 use PhpSpec\ObjectBehavior;
+use Psr\Log\LoggerInterface;
 
-class BalancerSpec extends ObjectBehavior
+class BalancerBuilderSpec extends ObjectBehavior
 {
-    function let()
-    {
-        $this->add("foo", [
-            "abc" => 80,
-            "def" => 20,
-        ]);
-    }
-
     function it_is_initializable()
     {
-        $this->shouldHaveType('Cmp\FeatureBalancer\Balancer');
+        $this->shouldHaveType('Cmp\FeatureBalancer\BalancerBuilder');
     }
 
-    function it_can_distribute_hits_across_features_based_on_numeric_seeds()
+    function it_can_build_the_balancer(Monitor $monitor, LoggerInterface $logger)
     {
-        $this->get("foo", 0)->shouldReturn("abc");
-        $this->get("foo", 1)->shouldReturn("abc");
-        $this->get("foo", 79)->shouldReturn("abc");
-
-        $this->get("foo", 80)->shouldReturn("def");
-        $this->get("foo", 99)->shouldReturn("def");
-
-        $this->get("foo", 100)->shouldReturn("abc");
-    }
-
-    function it_can_distribute_hits_across_features_based_on_string_seeds()
-    {
-        $this->get("foo", "bar")->shouldReturn("abc");
-        $this->get("foo", "aaa")->shouldReturn("def");
-    }
-
-    function it_can_distribute_hits_across_features_without_seed()
-    {
-        $this->get("foo")->shouldMatch('/abc|def/');
-    }
-
-    function it_fails_if_the_requested_feature_has_not_been_added()
-    {
-        $this->shouldThrow(OutOfBoundsException::class)->duringGet("bar");
+        $this->withLogger($logger)->shouldReturnAnInstanceOf(BalancerBuilder::class);
+        $this->withMonitor($monitor, "foo")->shouldReturnAnInstanceOf(BalancerBuilder::class);
+        $this->create([
+            "feature_1" => ["foo" => 50, "off" => 50],
+            "feature_2" => ["bar" => 20, "rab" => 40, "arb" => 40]
+        ])->shouldImplement(BalancerInterface::class);
     }
 }
