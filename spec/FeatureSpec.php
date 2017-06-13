@@ -35,7 +35,6 @@ class FeatureSpec extends ObjectBehavior
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', ["foo", [100 => 100]]);
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', ["foo", [true => 100]]);
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', ["foo", ["" => 100]]);
-        $this->shouldThrow(InvalidArgumentException::class)->during('__construct', ["foo", ["abc" => 50, "abc" => 50]]);
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', ["foo", ["abc" => -1, "def" => 101]]);
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', ["foo", ["abc" => 101, "def" => 0]]);
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', ["foo", ["abc" => 50, "def" => 49]]);

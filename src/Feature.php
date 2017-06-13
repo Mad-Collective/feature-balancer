@@ -32,14 +32,11 @@ class Feature
         $this->name = new Identifier($name);
 
         $total = 0;
-        foreach ($percentages as $path => $percentage) {
-            $path = new Identifier($path);
-            if (isset($this->percentages[(string) $path])) {
-                throw new InvalidArgumentException("The path '$path' on feature '$name' is duplicated");
-            }
 
+        foreach ($percentages as $path => $percentage) {
+            $path       = new Identifier($path);
             $percentage = new Percentage($percentage);
-            $total += $percentage->number();
+            $total      += $percentage->number();
 
             $this->percentages[(string) $path] = $percentage;
         }

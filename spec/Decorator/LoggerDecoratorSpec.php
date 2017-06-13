@@ -14,6 +14,13 @@ class LoggerDecoratorSpec extends ObjectBehavior
         $this->beConstructedWith($balancer, $logger, LogLevel::DEBUG);
     }
 
+    function it_delegates_to_the_inner_balancer_the_calls_to_add_features(BalancerInterface $balancer)
+    {
+        $this->add("foo", ["percentages"]);
+
+        $balancer->add("foo", ["percentages"])->shouldHaveBeenCalled();
+    }
+
     function it_logs_when_a_new_feature_path_is_decided(BalancerInterface $balancer, LoggerInterface $logger)
     {
         $balancer->get("foo", null)->willReturn("bar");
