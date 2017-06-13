@@ -51,7 +51,9 @@ class CodeCoverage extends Command
 
         $coverage = new PHP_CodeCoverage(null, $this->getFilter());
         $coverage->start('<tests>');
+
         $this->runPhpSpec();
+
         $coverage->stop();
 
         if ($input->getArgument('format') == 'clover') {
