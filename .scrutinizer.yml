@@ -1,0 +1,14 @@
+filter:
+    paths: ["src/*"]
+
+build:
+    environment:
+        docker: true
+    tests:
+        override:
+            - 'make unit'
+            - 
+                command: 'make code-coverage'
+                coverage:
+                    file: 'bin/clover.xml'
+                    format: 'clover'

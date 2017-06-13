@@ -1,0 +1,29 @@
+{
+    "name": "pluggit/feature-balancer",
+    "description": "This PHP library will allow to switch on/off or balance with a percentage between features",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Hilari Moragrega",
+            "email": "hilari.moragrega@teamcmp.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^2.0",
+        "phpunit/php-code-coverage": "^2.2"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cmp\\FeatureBalancer\\": "src/",
+            "spec\\Cmp\\FeatureBalancer\\": "spec/",
+            "bin\\Cmp\\FeatureBalancer\\": "bin/"
+        }
+    }
+}

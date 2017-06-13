@@ -1,0 +1,4 @@
+suites:
+    acme_suite:
+        namespace: Cmp\FeatureBalancer
+        psr4_prefix: Cmp\FeatureBalancer
