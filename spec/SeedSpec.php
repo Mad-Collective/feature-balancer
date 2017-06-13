@@ -42,14 +42,14 @@ class SeedSpec extends ObjectBehavior
 
     public function seedConversionExamples()
     {
-        return array(
-            array("1234à", 84),
-            array("1234è", 88),
-            array("foo", 26),
-            array(10055, 55),
-            array(-10055, 55),
-            array(1.1, 84),
-            array(1.2, 26),
-        );
+        return [
+            ["1234à", 84],
+            ["1234è", 88],
+            ["foo", 26],
+            [10055, 55],
+            [-10055, 55],
+            [1.1, 84],
+            [1.2, 26],
+        ];
     }
 }
