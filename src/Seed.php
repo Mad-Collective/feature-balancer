@@ -22,13 +22,7 @@ class Seed
             throw new InvalidArgumentException("The seed cannot be empty");
         }
 
-        if (is_numeric($seed)) {
-            $this->seed = $this->fromNumber($seed);
-        } elseif (is_string($seed)) {
-            $this->seed = $this->fromString($seed);
-        } else {
-            throw new InvalidArgumentException("The seed has to be either a string or and integer");
-        }
+        $this->seed = $this->calculateSeed($seed);
     }
 
     /**
@@ -62,5 +56,23 @@ class Seed
     private function fromNumber($seed)
     {
         return abs((int) $seed) % 100;
+    }
+
+    /**
+     * @param string|int $seed
+     *
+     * @return int
+     */
+    private function calculateSeed($seed)
+    {
+        if (is_numeric($seed)) {
+            return $this->fromNumber($seed);
+        }
+
+        if (is_string($seed)) {
+            return $this->fromString($seed);
+        }
+
+        throw new InvalidArgumentException("The seed has to be either a string or and integer");
     }
 }
