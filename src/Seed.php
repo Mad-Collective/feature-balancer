@@ -38,7 +38,7 @@ class Seed
      *
      * @return int
      */
-    private function fromHash($seed)
+    private function fromScalar($seed)
     {
         $total = 0;
         $hash  = md5((string) $seed);
@@ -71,7 +71,7 @@ class Seed
         }
 
         if (is_scalar($seed)) {
-            return $this->fromHash($seed);
+            return $this->fromScalar($seed);
         }
 
         throw new InvalidArgumentException("The seed has to be either a string or and integer");
