@@ -11,7 +11,8 @@
     ],
     "require": {
         "php": ">=5.5",
-        "psr/log": "^1.0"
+        "psr/log": "^1.0",
+        "coduo/phpspec-data-provider-extension": "^1.0"
     },
     "require-dev": {
         "phpspec/phpspec": "^2.0",

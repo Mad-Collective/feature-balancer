@@ -34,8 +34,8 @@ class BalancerSpec extends ObjectBehavior
 
     function it_can_distribute_hits_across_features_based_on_string_seeds()
     {
-        $this->get("foo", "bar")->shouldReturn("abc");
-        $this->get("foo", "aaa")->shouldReturn("def");
+        $this->get("foo", "bar")->shouldReturn("def");
+        $this->get("foo", "foo")->shouldReturn("abc");        
     }
 
     function it_can_distribute_hits_across_features_without_seed()
