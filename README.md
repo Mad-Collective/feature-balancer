@@ -78,6 +78,18 @@ $balancer = (new BalancerBuilder())->->withMonitor($monitor, "balanced_feature")
 $balancer->get("home_banner", 9874562);
 ```
 
+### Hiding exceptions
+If you don't wan't the feature balancer to throw exceptions, you can silence it with the `ExceptionSilencerDecorator`. It will log the errors and return "" as path for the requested feature
+```php
+// Add a monitor when building the balancer
+$balancer = (new BalancerBuilder())->->withoutExceptions()->create($config);
+
+/** 
+ * Requesting an unknown feature will return an empty string -> ""
+ */
+$balancer->get("unknown_feature");
+```
+
 ## Adding features to the balancer
 You can always add features to the balancer trough the method `add`. The rules are:
 * Every feature must have a non-empty unique string identifier, adding the same feature will overwrite the previous configuration
