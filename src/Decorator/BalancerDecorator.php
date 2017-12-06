@@ -30,6 +30,22 @@ abstract class BalancerDecorator implements BalancerInterface
     /**
      * {@inheritdoc}
      */
+    public function setConfig(array $config)
+    {
+        $this->balancer->config($config);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfig()
+    {
+        return $this->balancer->getConfig();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function get($feature, $seed = null)
     {
         return $this->balancer->get($feature, $seed);

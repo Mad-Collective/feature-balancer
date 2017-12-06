@@ -23,6 +23,26 @@ class Balancer implements BalancerInterface
     /**
      * {@inheritdoc}
      */
+    public function setConfig(array $config)
+    {
+        $this->features = [];
+
+        foreach ($config as $feature => $percentages) {
+            $this->add($feature, $percentages);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfig()
+    {
+        return $this->features;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function get($feature, $seed = null)
     {
         if (!isset($this->features[$feature])) {
@@ -51,6 +71,6 @@ class Balancer implements BalancerInterface
      */
     function jsonSerialize()
     {
-        return $this->features;
+        return $this->getConfig();
     }
 }

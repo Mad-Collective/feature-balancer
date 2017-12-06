@@ -45,7 +45,7 @@ class BalancerBuilder
     public function create(array $config = [])
     {
         $balancer = new Balancer();
-        $this->addConfig($balancer, $config);
+        $balancer->setConfig($config);
 
         if ($this->monitor instanceof Monitor) {
             $balancer = new MonitoringDecorator($balancer, $this->monitor, $this->metric);
@@ -106,18 +106,5 @@ class BalancerBuilder
         $this->exceptions = false;
 
         return $this;
-    }
-
-    /**
-     * Add the features to the balancer
-     *
-     * @param BalancerInterface $balancer
-     * @param array             $config
-     */
-    private function addConfig(BalancerInterface $balancer, array $config)
-    {
-        foreach ($config as $feature => $percentages) {
-            $balancer->add($feature, $percentages);
-        }
     }
 }
