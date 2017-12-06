@@ -5,7 +5,7 @@ namespace Cmp\FeatureBalancer;
 use Cmp\FeatureBalancer\Exception\InvalidArgumentException;
 use Cmp\FeatureBalancer\Exception\OutOfBoundsException;
 
-interface BalancerInterface
+interface BalancerInterface extends \JsonSerializable
 {
     /**
      * Adds a new feature in the balancer

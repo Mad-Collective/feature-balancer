@@ -7,7 +7,7 @@ use Cmp\FeatureBalancer\Exception\InvalidArgumentException;
 /**
  * Class Percentage
  */
-class Percentage
+class Percentage implements \JsonSerializable
 {
     /**
      * @var int
@@ -42,5 +42,13 @@ class Percentage
     public function number()
     {
         return $this->number;
+    }
+
+    /**
+     * @return int
+     */
+    function jsonSerialize()
+    {
+        return $this->number();
     }
 }

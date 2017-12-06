@@ -9,7 +9,7 @@ use Cmp\FeatureBalancer\Exception\InvalidArgumentException;
 /**
  * Class Identifier
  */
-class Feature
+class Feature implements \JsonSerializable
 {
     /**
      * @var Identifier
@@ -70,5 +70,13 @@ class Feature
         }
 
         return $path;
+    }
+
+    /**
+     * @return array
+     */
+    function jsonSerialize()
+    {
+        return $this->percentages;
     }
 }

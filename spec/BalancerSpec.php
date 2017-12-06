@@ -4,6 +4,7 @@ namespace spec\Cmp\FeatureBalancer;
 
 use Cmp\FeatureBalancer\Exception\OutOfBoundsException;
 use PhpSpec\ObjectBehavior;
+use Webmozart\Assert\Assert;
 
 class BalancerSpec extends ObjectBehavior
 {
@@ -46,5 +47,11 @@ class BalancerSpec extends ObjectBehavior
     function it_fails_if_the_requested_feature_has_not_been_added()
     {
         $this->shouldThrow(OutOfBoundsException::class)->duringGet("bar");
+    }
+
+    function it_can_be_json_serialized()
+    {
+        $json = json_encode($this->jsonSerialize()->getWrappedObject());
+        Assert::eq($json, '{"foo":{"abc":80,"def":20}}');
     }
 }

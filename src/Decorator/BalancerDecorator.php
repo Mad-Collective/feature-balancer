@@ -34,4 +34,12 @@ abstract class BalancerDecorator implements BalancerInterface
     {
         return $this->balancer->get($feature, $seed);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        return $this->balancer->jsonSerialize();
+    }
 }

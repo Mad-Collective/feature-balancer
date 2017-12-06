@@ -45,4 +45,12 @@ class Balancer implements BalancerInterface
 
         return new Seed($seed);
     }
+
+    /**
+     * @return array
+     */
+    function jsonSerialize()
+    {
+        return $this->features;
+    }
 }

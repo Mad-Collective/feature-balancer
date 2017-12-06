@@ -6,6 +6,7 @@ use Cmp\FeatureBalancer\BalancerInterface;
 use Cmp\FeatureBalancer\Exception\OutOfBoundsException;
 use PhpSpec\ObjectBehavior;
 use Psr\Log\LoggerInterface;
+use Webmozart\Assert\Assert;
 
 class ExceptionSilencerDecoratorSpec extends ObjectBehavior
 {
@@ -25,5 +26,14 @@ class ExceptionSilencerDecoratorSpec extends ObjectBehavior
             "feature"   => "foo",
             "exception" => $exception,
         ])->shouldHaveBeenCalled();
+    }
+
+    function it_can_be_json_serialized(BalancerInterface $balancer)
+    {
+        $balancer->jsonSerialize()->willReturn(["foo" => "bar"]);
+
+        $json = json_encode($this->jsonSerialize()->getWrappedObject());
+
+        Assert::eq($json, '{"foo":"bar"}');
     }
 }
