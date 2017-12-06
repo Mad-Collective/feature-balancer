@@ -63,6 +63,14 @@ class BalancerBuilder
     }
 
     /**
+     * @return BalancerInterface
+     */
+    public function createNullBalancer()
+    {
+        return new ExceptionSilencerDecorator(new Balancer());
+    }
+
+    /**
      * @param Monitor $monitor
      * @param string  $metric
      *

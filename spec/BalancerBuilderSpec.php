@@ -25,4 +25,15 @@ class BalancerBuilderSpec extends ObjectBehavior
             "feature_2" => ["bar" => 20, "rab" => 40, "arb" => 40]
         ])->shouldImplement(BalancerInterface::class);
     }
+
+    function it_can_build_a_null_balancer()
+    {
+        $balancer = $this->createNullBalancer([
+            "feature_1" => ["foo" => 50, "off" => 50],
+            "feature_2" => ["bar" => 20, "rab" => 40, "arb" => 40]
+        ]);
+
+        $balancer->shouldImplement(BalancerInterface::class);
+        $balancer->get("feature_1")->shouldReturn("");
+    }
 }
