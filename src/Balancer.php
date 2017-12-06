@@ -4,7 +4,7 @@ namespace Cmp\FeatureBalancer;
 
 use Cmp\FeatureBalancer\Exception\OutOfBoundsException;
 
-class Balancer implements BalancerInterface
+class Balancer implements ConfigurableBalancerInterface
 {
     /**
      * @var Feature[]

@@ -2,19 +2,19 @@
 
 namespace Cmp\FeatureBalancer\Decorator;
 
-use Cmp\FeatureBalancer\BalancerInterface;
+use Cmp\FeatureBalancer\ConfigurableBalancerInterface;
 
-abstract class BalancerDecorator implements BalancerInterface
+abstract class BalancerDecorator implements ConfigurableBalancerInterface
 {
     /**
-     * @var BalancerInterface
+     * @var ConfigurableBalancerInterface
      */
     protected $balancer;
 
     /**
-     * @param BalancerInterface $balancer
+     * @param ConfigurableBalancerInterface $balancer
      */
-    public function __construct(BalancerInterface $balancer)
+    public function __construct(ConfigurableBalancerInterface $balancer)
     {
         $this->balancer = $balancer;
     }

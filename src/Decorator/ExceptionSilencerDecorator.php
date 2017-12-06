@@ -2,12 +2,12 @@
 
 namespace Cmp\FeatureBalancer\Decorator;
 
-use Cmp\FeatureBalancer\BalancerInterface;
+use Cmp\FeatureBalancer\ConfigurableBalancerInterface;
 use Cmp\FeatureBalancer\Exception\BalancerException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
-class ExceptionSilencerDecorator extends BalancerDecorator implements BalancerInterface
+class ExceptionSilencerDecorator extends BalancerDecorator
 {
     /**
      * @var LoggerInterface
@@ -15,10 +15,10 @@ class ExceptionSilencerDecorator extends BalancerDecorator implements BalancerIn
     private $logger;
 
     /**
-     * @param BalancerInterface    $balancer
-     * @param LoggerInterface|null $logger
+     * @param ConfigurableBalancerInterface $balancer
+     * @param LoggerInterface|null          $logger
      */
-    public function __construct(BalancerInterface $balancer, LoggerInterface $logger = null)
+    public function __construct(ConfigurableBalancerInterface $balancer, LoggerInterface $logger = null)
     {
         parent::__construct($balancer);
         $this->logger = $logger ?: new NullLogger();

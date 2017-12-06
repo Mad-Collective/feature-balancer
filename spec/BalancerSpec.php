@@ -19,6 +19,8 @@ class BalancerSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Cmp\FeatureBalancer\Balancer');
+        $this->shouldImplement('Cmp\FeatureBalancer\BalancerInterface');
+        $this->shouldImplement('Cmp\FeatureBalancer\ConfigurableBalancerInterface');
     }
 
     function it_can_distribute_hits_across_features_based_on_numeric_seeds()

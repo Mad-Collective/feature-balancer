@@ -2,18 +2,18 @@
 
 namespace spec\Cmp\FeatureBalancer\Decorator;
 
-use Cmp\FeatureBalancer\BalancerInterface;
+use Cmp\FeatureBalancer\ConfigurableBalancerInterface;
 use Cmp\Monitoring\Monitor;
 use PhpSpec\ObjectBehavior;
 
 class MonitoringDecoratorSpec extends ObjectBehavior
 {
-    function let(BalancerInterface $balancer, Monitor $monitor)
+    function let(ConfigurableBalancerInterface $balancer, Monitor $monitor)
     {
         $this->beConstructedWith($balancer, $monitor, "my_metric");
     }
 
-    function it_logs_when_a_new_feature_path_is_decided(BalancerInterface $balancer, Monitor $monitor)
+    function it_logs_when_a_new_feature_path_is_decided(ConfigurableBalancerInterface $balancer, Monitor $monitor)
     {
         $balancer->get("foo", null)->willReturn("bar");
 

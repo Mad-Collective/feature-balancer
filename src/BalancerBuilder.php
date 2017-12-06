@@ -40,7 +40,7 @@ class BalancerBuilder
     /**
      * @param array $config
      *
-     * @return Balancer|LoggerDecorator|MonitoringDecorator
+     * @return BalancerInterface|ConfigurableBalancerInterface
      */
     public function create(array $config = [])
     {
@@ -63,7 +63,7 @@ class BalancerBuilder
     }
 
     /**
-     * @return BalancerInterface
+     * @return BalancerInterface|ConfigurableBalancerInterface
      */
     public function createNullBalancer()
     {

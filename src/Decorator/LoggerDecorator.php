@@ -2,12 +2,12 @@
 
 namespace Cmp\FeatureBalancer\Decorator;
 
-use Cmp\FeatureBalancer\BalancerInterface;
+use Cmp\FeatureBalancer\ConfigurableBalancerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 
-class LoggerDecorator extends BalancerDecorator implements BalancerInterface
+class LoggerDecorator extends BalancerDecorator
 {
     /**
      * @var LoggerInterface
@@ -19,7 +19,12 @@ class LoggerDecorator extends BalancerDecorator implements BalancerInterface
      */
     private $level;
 
-    public function __construct(BalancerInterface $balancer, LoggerInterface $logger = null, $level = LogLevel::INFO)
+    /**
+     * @param ConfigurableBalancerInterface $balancer
+     * @param LoggerInterface|null          $logger
+     * @param string                        $level
+     */
+    public function __construct(ConfigurableBalancerInterface $balancer, LoggerInterface $logger = null, $level = LogLevel::INFO)
     {
         parent::__construct($balancer);
         $this->logger = $logger ?: new NullLogger();
