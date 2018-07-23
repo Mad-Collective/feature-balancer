@@ -36,7 +36,7 @@ class MonitoringDecorator extends BalancerDecorator
      */
     public function get($feature, $seed = null)
     {
-        $path = $this->balancer->get($feature, $seed);
+        $path = parent::get($feature, $seed);
 
         $this->monitor->increment($this->metric, [
             "feature" => $feature,

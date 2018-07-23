@@ -35,4 +35,13 @@ class MonitoringDecoratorSpec extends ObjectBehavior
 
         $balancer->setConfig(["config"])->shouldHaveBeenCalled();
     }
+
+    function it_can_get_a_config(ConfigurableBalancerInterface $balancer)
+    {
+        $config = ["foo"];
+
+        $balancer->getConfig()->willReturn($config);
+
+        $this->getConfig()->shouldReturn($config);
+    }
 }
