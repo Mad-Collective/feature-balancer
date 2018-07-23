@@ -28,13 +28,9 @@ deps:
 
 test: unit
 unit:
-	make dev
-	make deps
 	@docker exec -t ${COMPONENT}_${CONTAINER}_1 ${APP_ROOT}/ops/scripts/unit.sh ${PHP_VERSION}
 
 code-coverage:
-	make dev
-	make deps
 	@docker exec -t ${COMPONENT}_${CONTAINER}_1 php-7.0 ${APP_ROOT}/bin/app code-coverage:run ${CODE_COVERAGE_FORMAT}
 
 ps: status

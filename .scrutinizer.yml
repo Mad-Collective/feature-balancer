@@ -12,8 +12,10 @@ checks:
 build:
     environment:
         docker: true
+        php: '5.5.25'
     tests:
         override:
+            - 'make dev'
             - 'make unit'
             - 
                 command: 'make code-coverage'
