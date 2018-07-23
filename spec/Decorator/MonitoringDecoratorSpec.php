@@ -6,6 +6,9 @@ use Cmp\FeatureBalancer\ConfigurableBalancerInterface;
 use Cmp\Monitoring\Monitor;
 use PhpSpec\ObjectBehavior;
 
+/**
+ * @mixin \Cmp\FeatureBalancer\Decorator\MonitoringDecorator
+ */
 class MonitoringDecoratorSpec extends ObjectBehavior
 {
     function let(ConfigurableBalancerInterface $balancer, Monitor $monitor)
@@ -24,5 +27,12 @@ class MonitoringDecoratorSpec extends ObjectBehavior
             "seed"    => false,
             "path"    => "bar",
         ])->shouldHaveBeenCalled();
+    }
+
+    function it_can_add_a_new_config(ConfigurableBalancerInterface $balancer)
+    {
+        $this->setConfig(["config"]);
+
+        $balancer->setConfig(["config"])->shouldHaveBeenCalled();
     }
 }

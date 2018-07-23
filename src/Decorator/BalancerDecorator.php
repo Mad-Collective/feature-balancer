@@ -32,7 +32,7 @@ abstract class BalancerDecorator implements ConfigurableBalancerInterface
      */
     public function setConfig(array $config)
     {
-        $this->balancer->config($config);
+        $this->balancer->setConfig($config);
     }
 
     /**

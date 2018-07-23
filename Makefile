@@ -24,8 +24,7 @@ ifeq ($(IMAGES),true)
 endif
 
 deps:
-	@docker exec -t $(shell docker-compose -p ${COMPONENT} -f ops/docker/docker-compose.yml ps -q ${CONTAINER}) \
-	 php-5.5 /usr/bin/composer install
+	@docker exec -t ${COMPONENT}_${CONTAINER}_1 php-5.5 /usr/bin/composer install
 
 test: unit
 unit:
