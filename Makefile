@@ -31,7 +31,8 @@ unit:
 	@docker exec -t ${COMPONENT}_${CONTAINER}_1 ${APP_ROOT}/ops/scripts/unit.sh ${PHP_VERSION}
 
 code-coverage:
-	@docker exec -t ${COMPONENT}_${CONTAINER}_1 php-7.0 ${APP_ROOT}/bin/app code-coverage:run ${CODE_COVERAGE_FORMAT}
+	# Wrapped because docker compose generate weird error codes. see https://github.com/docker/compose/issues/3379#issuecomment-214715606 
+	@docker exec -t ${COMPONENT}_${CONTAINER}_1 sh -c 'php-7.0 ${APP_ROOT}/bin/app code-coverage:run ${CODE_COVERAGE_FORMAT}'
 
 ps: status
 status:
