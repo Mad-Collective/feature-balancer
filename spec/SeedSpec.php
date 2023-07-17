@@ -3,6 +3,7 @@
 namespace spec\Cmp\FeatureBalancer;
 
 use Cmp\FeatureBalancer\Exception\InvalidArgumentException;
+use Cmp\FeatureBalancer\Seed;
 use PhpSpec\ObjectBehavior;
 
 class SeedSpec extends ObjectBehavior
@@ -31,25 +32,23 @@ class SeedSpec extends ObjectBehavior
         $this->shouldThrow(InvalidArgumentException::class)->during('__construct', [new \stdClass(), []]);
     }
 
-    /**
-     * @dataProvider seedConversionExamples
-     */
-    function it_can_determine_the_seed($inputValue, $expectedValue)
+    function it_can_determine_the_seed(): void
     {
-        $this->beConstructedWith($inputValue);
-        $this->seed()->shouldReturn($expectedValue);
-    }
-
-    public function seedConversionExamples()
-    {
-        return [
-            ["1234à", 84],
-            ["1234è", 88],
-            ["foo", 26],
-            [10055, 55],
-            [-10055, 55],
-            [1.1, 84],
-            [1.2, 26],
+        $values = [
+            "1234à" => 84,
+            "1234è" => 88,
+            "foo" => 26,
+            10055 => 55,
+            -10055 => 55,
+            '1.1' => 84,
+            '1.2' => 26,
         ];
+
+        foreach ($values as $index => $value) {
+            $seed = new Seed($index);
+            if ($seed->seed() !== $value) {
+                throw new \InvalidArgumentException("The seed for $index should be $value");
+            }
+        }
     }
 }
