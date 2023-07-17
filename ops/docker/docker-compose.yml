@@ -1,7 +1,7 @@
-version: '2'
+version: '3.7'
 
 services:
-  phpfarm:
-      build: phpfarm
-      volumes:
-        - ../../:/app/feature-balancer
+  phpcli:
+    build: php
+    volumes:
+      - ../../:/app/feature-balancer
