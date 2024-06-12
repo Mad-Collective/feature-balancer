@@ -16,7 +16,7 @@
     "require-dev": {
         "phpspec/phpspec": "^7.0",
         "phpunit/php-code-coverage": "^2.2",
-        "pluggit/monitoring": "dev-compatibility-psr-log-2"
+        "pluggit/monitoring": "^4.0.0"
     },
     "config": {
         "bin-dir": "bin"
