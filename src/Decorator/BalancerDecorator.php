@@ -54,7 +54,7 @@ abstract class BalancerDecorator implements ConfigurableBalancerInterface
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->balancer->jsonSerialize();
     }
