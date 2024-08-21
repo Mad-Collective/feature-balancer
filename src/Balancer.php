@@ -69,7 +69,7 @@ class Balancer implements ConfigurableBalancerInterface
     /**
      * @return array
      */
-    function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return $this->getConfig();
     }

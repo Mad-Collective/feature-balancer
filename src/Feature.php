@@ -75,7 +75,7 @@ class Feature implements \JsonSerializable
     /**
      * @return array
      */
-    function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return $this->percentages;
     }
