@@ -9,16 +9,9 @@ use Psr\Log\NullLogger;
 
 class ExceptionSilencerDecorator extends BalancerDecorator
 {
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    private ?LoggerInterface $logger;
 
-    /**
-     * @param ConfigurableBalancerInterface $balancer
-     * @param LoggerInterface|null          $logger
-     */
-    public function __construct(ConfigurableBalancerInterface $balancer, LoggerInterface $logger = null)
+    public function __construct(ConfigurableBalancerInterface $balancer, ?LoggerInterface $logger = null)
     {
         parent::__construct($balancer);
         $this->logger = $logger ?: new NullLogger();
