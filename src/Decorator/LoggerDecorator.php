@@ -24,7 +24,7 @@ class LoggerDecorator extends BalancerDecorator
      * @param LoggerInterface|null          $logger
      * @param string                        $level
      */
-    public function __construct(ConfigurableBalancerInterface $balancer, LoggerInterface $logger = null, $level = LogLevel::INFO)
+    public function __construct(ConfigurableBalancerInterface $balancer, ?LoggerInterface $logger = null, $level = LogLevel::INFO)
     {
         parent::__construct($balancer);
         $this->logger = $logger ?: new NullLogger();

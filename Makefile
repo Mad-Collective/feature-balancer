@@ -11,7 +11,7 @@ dev:
 	@docker-compose -p ${COMPONENT} -f ops/docker/docker-compose.yml up -d --build
 
 enter:
-	@docker exec -ti ${COMPONENT}_${CONTAINER}_1 /bin/sh
+	@docker exec -ti ${COMPONENT}-${CONTAINER}-1 /bin/sh
 
 kill:
 	@docker-compose -p ${COMPONENT} -f ops/docker/docker-compose.yml kill
@@ -20,15 +20,15 @@ nodev:
 	@docker-compose -p ${COMPONENT} -f ops/docker/docker-compose.yml kill
 	@docker-compose -p ${COMPONENT} -f ops/docker/docker-compose.yml rm -f
 ifeq ($(IMAGES),true)
-	@docker rmi ${COMPONENT}_${CONTAINER}
+	@docker rmi ${COMPONENT}-${CONTAINER}
 endif
 
 deps:
-	@docker exec -t ${COMPONENT}_${CONTAINER}_1 php-5.5 /usr/bin/composer install
+	@docker exec -t ${COMPONENT}-${CONTAINER}-1 php-5.5 /usr/bin/composer install
 
 test: unit
 unit:
-	@docker exec -t ${COMPONENT}_${CONTAINER}_1 ${APP_ROOT}/ops/scripts/unit.sh ${PHP_VERSION}
+	@docker exec -t ${COMPONENT}-${CONTAINER}-1 ${APP_ROOT}/ops/scripts/unit.sh ${PHP_VERSION}
 
 code-coverage:
 	# Wrapped because docker compose generate weird error codes. see https://github.com/docker/compose/issues/3379#issuecomment-214715606 

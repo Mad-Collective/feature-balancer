@@ -47,7 +47,7 @@ class Percentage implements \JsonSerializable
     /**
      * @return int
      */
-    function jsonSerialize()
+    public function jsonSerialize(): int
     {
         return $this->number();
     }
