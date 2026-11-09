@@ -10,13 +10,13 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.4",
         "psr/log": "^2.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^7.0",
+        "phpspec/phpspec": "^8.0",
         "phpunit/php-code-coverage": "^2.2",
-        "pluggit/monitoring": "^4.0.0"
+        "pluggit/monitoring": "^5.0"
     },
     "config": {
         "bin-dir": "bin"
